@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detection</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            background-image:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('/static/image.jpg');
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        h1 {
+            margin-top: 60px;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 55px;
+            color:#f4ff53;
+        }
+        .new{
+            font-style: italic;
+            /*transform: skew(-8deg);*/
+            color: #fff;
+            font-size: 20px;
+        }
+        form {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .textarea-container {
+            position: relative;
+            width: 100%;
+        }
+        textarea {
+            
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            height: 150px;
+            border-radius: 8px;
+            resize: none; /* Prevent resizing */
+            padding-right: 30px; /* Space for the X */
+            border: 1px solid #100f0fee;
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+           
+        }
+        .clear-btn {
+            position: absolute;
+            right: 20px;
+            top: 3px;
+            background: transparent;
+            border: none;
+            cursor: pointer; /* Change cursor to pointer */
+            font-size: 20px;
+            color: black; /* Change color if needed */
+            pointer-events: auto; /* Disable pointer events */
+            text-decoration: none; /* Remove underline */
+        }
+        label {
+            display: block;
+            margin-bottom: 0;
+            font-size: 20px;
+            color: #f4ff53;
+            margin-top: 20px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            max-width: 180px;
+            padding: 8px;
+            margin: 0 auto;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 8px;
+            color:#f4ff53;
+            border: 1px solid #fffffffe;
+            background-color: black;
+            font-size: 15px;
+          
+            
+        }
+        h2{
+            color:#f4ff53;
+        }
+        p{
+            color:#f4ff53;
+            font-size: 30px;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fake News Detection</h1>
+    <p class="new">Explore your personal fake news prediction platform,where data science meets advanced analytics to help you identify <br>and forecast misinformation trends,empowering you to engage with news content more critically and effectively.</p>
+    <form action="/predict" method="post">
+        <label for="news">Enter News Article:</label><br>
+        <div class="textarea-container">
+            <textarea id="news" name="news" rows="5" cols="50" required>{{ request.form.news}}</textarea>
+            <a href="/clear" class="clear-btn">✖</a>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+
+
+    {% if prediction %}
+       <h2>Predicted Outcome:</h2>
+       <p>{{prediction}}</p>
+    {% endif %}
+
+</body>
+</html>
