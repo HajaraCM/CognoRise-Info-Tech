@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+  
+ 
+
+    <form id="upload-file" action="/predict" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="upload-label">
+            <button type="button" id="chooseImageButton" class="btn btn-custom">Choose Image</button>
+            <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg" required style="display: none;">
+        </label>
+        
+        <h3 style="color: white;" class="mt-3" >Uploaded Image</h3>
+        <img id="imagePreview" style="display: block; margin: 0 auto;"/>
+        
+        <button type="submit" style="display: none;" id="predictButton" form="upload-file" class="btn btn-custom mt-3">Submit</button> <!-- Hidden by default -->
+
+    </form>
+
+    
+    <div id="resultContainer" class="mt-3">
+        {% if result %}
+        <h3 id="result"  class="result-text">{{ result }}</h3>  <!-- This will show the prediction result -->
+        {% else %}
+        <h3 id="result"  class="result-text" style="display: none;">No result yet.</h3> <!-- Hidden by default -->
+        {% endif %}
+    </div>
+
+    <script>
+
+        document.getElementById('chooseImageButton').addEventListener('click', function () {
+            document.getElementById('imageUpload').click(); // Trigger the file input when the button is clicked
+        });
+
+        document.getElementById('imageUpload').addEventListener('change', function () {
+            const file = this.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                document.getElementById('imagePreview').src = e.target.result;
+                document.getElementById('imagePreview').style.display = 'block';
+                document.getElementById('predictButton').style.display = 'inline-block'; // Show predict button
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+    {% if image %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('imagePreview').src = "{{ url_for('uploaded_file', filename=image) }}";
+            document.getElementById('imagePreview').style.display = 'block';
+            document.getElementById('predictButton').style.display = 'inline-block'; // Show predict button after upload
+        });
+    </script>
+    {% endif %}
+</div>
+{% endblock %}
+
