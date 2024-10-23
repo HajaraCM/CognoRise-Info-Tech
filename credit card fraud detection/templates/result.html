@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Prediction</title>
+    <style>
+        body {
+            font-family: 'poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(rgba(9,0,77,0.65), rgba(9,0,77,0.65)),url('/static/image.jpg');
+            background-color: #fff; /* White background */
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Full viewport height */
+            position: relative;
+        }
+        .navbar {
+            margin-bottom: 30px;
+            margin-left: 100px;
+            padding: 20px; /* Padding inside navbar */
+            margin-top: 30px;
+        }
+        .navbar a {
+            padding: 10px 20px;
+            border: 1px solid #fff; 
+            border-radius: 28px; /* Slightly rounded corners */
+            color: #fff; /* Black text color */
+            text-decoration: none;
+            transition: background-color 0.3s;
+            background-color: rgba(184, 25, 147, 0.795);
+        }
+        .navbar a:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Slightly darken on hover */
+        }
+        h1 {
+            color:#fff;
+            text-align: center;
+            margin-bottom: 100px;
+            margin-top: 60px;
+            font-size: 3em;
+            position: relative; /* Position relative for z-index */
+            z-index: 2;
+        }
+
+        .right-image{
+            width: 30%; /* Smaller size */
+            height: auto; /* Maintain aspect ratio */
+            position: absolute; /* Position it absolutely */
+            top: 20px; /* Distance from top */
+            right: 60px; /* Distance from right */
+            display: flex;
+            justify-content: center; /* Center image horizontally */
+            align-items: center; /* Center image vertically */
+            background: url('/static/image1.jpg') no-repeat center; 
+            background-size: cover; /* Ensure it covers the space */
+            transform: rotate(-20deg); /* Rotate slightly */
+            z-index: 1; 
+            min-height: 200px; 
+            opacity: 0.9; /* Optional: make it slightly transparent for effect */
+            
+        }
+        .right-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(9, 0, 77, 0.65), rgba(9, 0, 77, 0.65)); /* Gradient overlay */
+            z-index: 1; /* Ensure it sits above the image */
+        }
+        .input-row {
+            display: flex;
+            justify-content: center; /* Center the row */
+            margin-bottom: 15px;
+            z-index: 2;
+            position: relative;
+        }
+        .input-row label {
+            display: block;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .input-row input {
+            padding: 10px;
+            margin: 0 10px; /* Small space between inputs */
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 400px;
+            z-index: 2;
+        }
+        button {
+            display: block;
+            margin: 0 auto; /* Center the button */
+            padding: 10px;
+            width: 180px; /* Fixed width for the button */
+            border: none;
+            border-radius: 8px;
+            background-color: rgba(184, 25, 147, 0.795);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 2;
+            border: 1px solid #fff; 
+        }
+        button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 20px ;
+            z-index: 2;
+            color: #fff;
+        }
+       
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/">Home</a>
+    </div>
+    <h1>Credit Card Fraud Detection</h1>
+
+    <div class="right-image"></div>
+    <form method="POST" action="/predict_fraud">
+        <div class="input-row">
+            <div>
+                <label for="amount">Amount</label>
+                <input type="text" id="amount" name="amount" required step="0.01" placeholder="Enter amount">
+            </div>
+            <div>
+                <label for="time">Time (HH:MM)</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+        </div>
+        <button type="submit">Predict Fraud</button>
+    </form>
+    
+    {% if result %}
+    <div class="result">
+        <p>{{ result }}</p>
+    </div>
+    {% endif %}
+    
+</body>
+</html>

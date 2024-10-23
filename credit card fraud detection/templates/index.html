@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card</title>
+    
+    <style>
+        body {
+            font-family: 'poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-image: linear-gradient(rgba(9,0,77,0.65), rgba(9,0,77,0.65)),url('/static/image.jpg');
+            background-color: #fff; /* White background */
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Full viewport height */
+        }
+        .content {
+            width: 50%; /* Left side width */
+            padding: 40px 20px 40px 80px; /* Adjusted padding for left side */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            align-items: flex-start; /* Align items to the left */
+            z-index: 2; 
+        }
+        .navbar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            margin-left: 100px;
+            padding: 10px; /* Padding inside navbar */
+        }
+        .navbar a {
+            padding: 10px 10px;
+            border: 1px solid #fff; 
+            border-radius: 20px; /* Slightly rounded corners */
+            color: #fff; /* Black text color */
+            text-decoration: none;
+            transition: background-color 0.3s;
+            background-color: rgba(184, 25, 147, 0.795);
+        }
+        .navbar a:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Slightly darken on hover */
+        }
+        .right-image{
+            width: 30%; /* Smaller size */
+            height: auto; /* Maintain aspect ratio */
+            position: absolute; /* Position it absolutely */
+            top: 60px; /* Distance from top */
+            right: 60px; /* Distance from right */
+            display: flex;
+            justify-content: center; /* Center image horizontally */
+            align-items: center; /* Center image vertically */
+            background: url('/static/image1.jpg') no-repeat center; 
+            background-size: cover; /* Ensure it covers the space */
+            transform: rotate(-20deg); /* Rotate slightly */
+            z-index: 1; 
+            min-height: 200px; 
+            
+        }
+        .right-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(9, 0, 77, 0.65), rgba(9, 0, 77, 0.65)); /* Gradient overlay */
+            z-index: 1; /* Ensure it sits above the image */
+        }
+        h1 {
+            font-size: 4rem; /* Larger size for welcome */
+            font-weight: bold; /* Bold text */
+            margin-bottom: 0; /* No space below h1 */
+            color: #fff;
+        }
+        h2 {
+            font-size: 2.5rem; /* Smaller size for Instacart */
+            margin-bottom: 20px; /* Space below h2 */
+            margin-top: 0; /* No space above h2 */
+            color: #ffff;
+        }
+        p {
+            font-size: 1rem; /* Smaller size for paragraph */
+            margin: 5px 0; /* Reduced margin between paragraphs */
+            color: #fff;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        
+        <h1>CREDIT CARD</h1>
+        <h2>FRAUD DETECTION</h2>
+        <p> A system designed to identify and prevent fraudulent transactions in real-time,<br>protecting users from financial loss and enhancing transaction security.</p>
+        <div class="navbar">
+            <a href="/predict_fraud">Detect Credit Card Fraud</a>
+        </div>
+  </div>
+
+    <div class="right-image">
+        <!-- Image will be displayed here -->
+    </div>
+
+</body>
+</html>

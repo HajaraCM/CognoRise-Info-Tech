@@ -1,0 +1,11 @@
+
+Flask @ file:///C:/b/abs_f9w7doyu0h/croot/flask_1716545924884/work
+Jinja2 @ file:///C:/b/abs_92fccttino/croot/jinja2_1716993447201/work
+joblib==1.4.2
+numpy==2.1.2
+pandas==2.2.3
+python-dateutil==2.9.0.post0
+pytz==2024.2
+scikit-learn==1.5.2
+scipy==1.14.1
+
